@@ -184,7 +184,7 @@ export class Utils {
     mytest_rfr(numWidth, denomWidth, proper = true) {
         try {
             if (numWidth <= 0 || denomWidth <= 0 || numWidth > 9 || denomWidth > 9)
-                throw new console.error("Argument(s) exception: rfr(${numWidth}, ${denomWidth})");
+                throw new console.error(`Argument(s) exception: rfr(${numWidth}, ${denomWidth})`);
             var num = this.mytest_ri(Math.pow(10, numWidth - 1), Math.pow(10, numWidth) - 1);
             var denom = this.mytest_ri(Math.pow(10, denomWidth - 1), Math.pow(10, denomWidth) - 1);
             if (numWidth > denomWidth)
@@ -230,7 +230,7 @@ export class Utils {
     mytest_primeFactors(x) {
         try {
             if (x > 1048577)
-                throw new console.error("Argument exception: primefactors(${x})");
+                throw new console.error(`Argument exception: primefactors(${x})`);
             if (x < 2)
                 return [0];
             if (x < 4)
@@ -276,14 +276,18 @@ export class Utils {
             throw (e);
         }
     }
+    mylib_array_prod(prod, x) {
+        return prod * x;
+    }
     mytest_lcm(x) {
         try {
-            let mult = 1;
+            //let mult = 1;
             var x_abs = x.map(x => Math.abs(x));
-            for (let m = 0; m < x_abs.length; m += 1)
-                mult = mult * x_abs[m];
+            var mult = x.reduce(this.mylib_array_prod);
+            //for( let m=0; m<x_abs.length; m+=1)
+            //    mult=mult*x_abs[m];
             if (mult > 150000000)
-                throw new console.error("\nInput array too large: ${mult} - mytest_lcm");
+                throw new console.error(`\nInput array too large: ${mult} - mytest_lcm`);
             let rtn = mult;
             let skip = false;
             for (let i = mult; i > 0; i -= 1) {
@@ -333,7 +337,7 @@ export class Utils {
     mylib_sq(x, y) {
         try {
             if (y < 0)
-                throw new console.error("\nArgument(s) exception: ${x}, ${y} in mylib_sq");
+                throw new console.error(`\nArgument(s) exception: ${x}, ${y} in mylib_sq`);
             if (x == 0)
                 return 0;
             var ran = this.mytest_ri(x, y);
@@ -402,7 +406,7 @@ export class Utils {
         try {
             return parseFloat(x.toPrecision(figures));
             if (figures < 1)
-                throw new console.error("\nArgument(s)exception: mylib_significant_figures($(x), $(figures))");
+                throw new console.error(`\nArgument(s)exception: mylib_significant_figures($(x), $(figures))`);
             if (x == 0)
                 return 0;
             var rtn = Math.abs(x);
