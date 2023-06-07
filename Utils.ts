@@ -27,7 +27,7 @@ export class Utils{
         }
     }
 
-    mytest_ri(x: number, y: number, nonZero=true):number {
+    mytest_ri = (x: number, y: number, nonZero=true):number => {
         try{
             if(x==y)
                 return x;
