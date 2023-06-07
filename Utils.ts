@@ -16,7 +16,8 @@ export class Utils{
         }
     }
 
-    mylog(msg:string){
+    mylog = (msg:string) => {
+        return;
         if(this.logging){
             try{
                 appendFileSync(this.logFilePath, `\n${msg}`);
@@ -26,7 +27,7 @@ export class Utils{
         }
     }
 
-    mytest_ri(x: number, y: number, nonZero=true):number{
+    mytest_ri(x: number, y: number, nonZero=true):number {
         try{
             if(x==y)
                 return x;
@@ -35,11 +36,7 @@ export class Utils{
             if(x < 0 && y < 0){
                 x=Math.abs(x);
                 y=Math.abs(y);
-                if(x>y){
-                    let tmp=y;
-                    y=x;
-                    x=tmp;
-                }
+                var [x, y] = [ Math.min(y, x), Math.max(y, x) ];
                 do{
                     rtn = (Math.ceil(Math.random() * ( y - x ) + x)) * -1;
                 }while(rtn == 0 && nonZero);
@@ -66,11 +63,7 @@ export class Utils{
                     }while(rtn == 0 && nonZero);
                 }
             }else{
-                if(x>y){
-                    let tmp=y;
-                    y=x;
-                    x=tmp;
-                }
+                var [x, y] = [ Math.min(y, x), Math.max(y, x) ];
                 let nudge=0;
                 if(x==0)
                     nudge++;
@@ -88,7 +81,7 @@ export class Utils{
         }
     }
 
-    mytest_rd(x: number, y:number, z:number, nonZero=true):number{
+    mytest_rd = (x: number, y:number, z:number, nonZero=true):number => {
         try{
             //var a = new bigDecimal(12.6789);
             if(z==0)
@@ -110,11 +103,7 @@ export class Utils{
             if(x<0 && y<0){
                 x=Math.abs(x);
                 y=Math.abs(y);
-                if(x>y){
-                    var tmp = y;
-                    y=x;
-                    x=tmp;
-                }
+                var [x, y] = [ Math.min(y, x), Math.max(y, x) ];
                 if(y-x==1){
                     return(x+dec)*-1;
                 }else{
@@ -146,11 +135,7 @@ export class Utils{
                     }
                 }
             }else{
-                if(x>y){
-                    let tmp=y;
-                    y=x;
-                    x=tmp;
-                }
+                var [x, y] = [ Math.min(y, x), Math.max(y, x) ];
                 var nudge = 0;
                 y-- // keeps the decimal portion in range
                 if(x==0)
@@ -163,7 +148,6 @@ export class Utils{
 
             // unrepresentable floats -----------
             let prec:string = rtn.toPrecision(z + Math.trunc(rtn).toString().length);
-            let newrtn = parseFloat(  rtn.toFixed(z))
             return parseFloat(parseFloat(prec).toFixed(z));
         }catch(e){
             console.log(e);
@@ -171,7 +155,7 @@ export class Utils{
         }
     }
 
-    mytest_rfr(numWidth:number, denomWidth:number, proper=true){
+    mytest_rfr = (numWidth:number, denomWidth:number, proper=true) => {
         try{
             if (numWidth<=0 || denomWidth<=0 || numWidth>9 || denomWidth>9)
                 throw new console.error(`Argument(s) exception: rfr(${numWidth}, ${denomWidth})`);
@@ -191,8 +175,7 @@ export class Utils{
             throw(e);
         }
     }
-
-    mytest_isPrime(x:number){
+    mytest_isPrime = (x:number) => {
         try{
             if(x==2)
                 return true;
@@ -217,7 +200,7 @@ export class Utils{
         }
     }
 
-    mytest_primeFactors(x:number){
+    mytest_primeFactors = (x:number) => {
         try{
             if(x > 1048577)
                 throw new console.error(`Argument exception: primefactors(${x})`);
@@ -245,7 +228,7 @@ export class Utils{
         }
     }
 
-    width(x:number):number{
+    width = (x:number):number => {
         try{
             return Math.abs(x).toString().length;
         }catch(e){
@@ -255,19 +238,9 @@ export class Utils{
         }
     }
 
-    aJoin(x:number[]){
-        try{
-            for( let i=0; i<x.length; i+=1 )
-            console.log(x[i])
-        }catch(e){
-            console.log(e);
-            throw(e);
-        }
-    }
-    mylib_array_prod(prod:number, x:number):number{
-        return prod * x;
-    }
-    mytest_lcm(x:number[]):number{
+    mylib_array_prod = (prod:number, x:number):number =>  prod * x;
+
+    mytest_lcm = (x:number[]):number => {
         try{
             var x_abs = x.map(x=>Math.abs(x));
             var mult = x.reduce(this.mylib_array_prod);
@@ -294,7 +267,7 @@ export class Utils{
         }
     }
 
-    mytest_hcf(x:number[]):number{
+    mytest_hcf = (x:number[]):number => {
         try{
             var x_abs = x.map(x=>Math.abs(x));
             let hcf=0;
@@ -319,7 +292,7 @@ export class Utils{
         }
     }
 
-    mylib_sq(x:number,y:number):number{
+    mylib_sq = (x:number,y:number):number => {
         try{
             if(y<0)
                 throw new console.error(`\nArgument(s) exception: ${x}, ${y} in mylib_sq`);
@@ -334,7 +307,7 @@ export class Utils{
         }
     }
 
-    mylib_isSquare(x:number){
+    mylib_isSquare = (x:number) => {
         try{
             if(x<4)
                 return false;
@@ -346,7 +319,7 @@ export class Utils{
         }
     }
 
-    mylib_notSquare(x:number, y:number):number{
+    mylib_notSquare = (x:number, y:number):number => {
         try{
             var rtn=4;
             while(this.mylib_isSquare(rtn)){
@@ -362,7 +335,7 @@ export class Utils{
         }
     }
 
-    mylib_choose(in_set:number[]):number{
+    mylib_choose = (in_set:number[]):number => {
         try{
             let indx = this.mytest_ri(1, in_set.length)-1;
             return in_set[ indx ];
@@ -373,12 +346,15 @@ export class Utils{
         }
     }
 
-    mylib_not(not_me:number, x:number, y:number, func){
+    mylib_not = (not_us:number[], func:Function, max_tries:number, ...rest):number => {
         try{
-            var rtn=not_me;
-            while(rtn==not_me)
-                rtn=func(x,y);
-            return rtn;    
+            var rtn=not_us[0];
+            for(let i=0;i<max_tries;i++){
+                rtn=func(...rest);
+                if(!not_us.includes(rtn))
+                    return rtn;
+            }
+            throw new Error(`Exception in mylib_not: rtn not generated after ${max_tries} attempts.`);
         }catch(e){
             console.log(e);
             this.mylog(e.message);
@@ -387,7 +363,9 @@ export class Utils{
     }
 
     //Return val type?
-    mylib_significant_figures(x:number, figures:number):number{
+    mylib_significant_figures = (x:number, figures:number):number => 
+    //parseFloat(x.toPrecision(figures));
+    {
         try{
             return parseFloat(x.toPrecision(figures));
             if(figures <1)
@@ -420,7 +398,7 @@ export class Utils{
         }
     }
 
-    mylib_toSuper(s:string):string{
+    mylib_toSuper = (s:string):string => {
         try{
             let rtn:string="";
             for(let i=0; i<s.length; i++){
@@ -505,7 +483,7 @@ export class Utils{
         }
     }
 
-    mylib_toSub(s:string):string{
+    mylib_toSub= (s:string):string => {
         try{
             let rtn:string="";
             for(let i=0; i<s.length; i++){
@@ -579,7 +557,7 @@ export class Utils{
         }
     }
 
-    mylib_toStandardForm(n:number) :string {
+    mylib_toStandardForm = (n:number) :string => {
         try{
             if(n==0)
                 return "0";
@@ -614,8 +592,3 @@ export class Utils{
         }
     }
 }
-
-//export default new Utils();
-// export { mytest_ri, mytest_rd, mytest_rfr, mytest_isPrime, mytest_primeFactors, mytest_lcm,
-//     mytest_hcf, mylib_sq, mylib_isSquare, mylib_notSquare, mylib_choose, mylib_not, 
-//     mylib_significant_figures, mylib_toSuper, mylib_toSub, mylib_toStandardForm}

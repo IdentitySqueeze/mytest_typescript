@@ -616,23 +616,23 @@ describe("utils test", function(){
 
     });
     it("int not test", function(){
-        assert.notEqual( utils.mylib_not(5, 4,6, utils.mytest_ri), 5);
-        assert.notEqual( utils.mylib_not(5, 4,6, utils.mytest_ri), 5);
-        assert.notEqual( utils.mylib_not(5, 4,6, utils.mytest_ri), 5);
-        assert.notEqual( utils.mylib_not(0,-1,1, utils.mytest_ri), 0);
-        assert.notEqual( utils.mylib_not(5, 4,6, utils.mytest_ri), 5);
-        assert.notEqual( utils.mylib_not(5, 4,6, utils.mytest_ri), 5);
-        assert.notEqual( utils.mylib_not(5, 4,6, utils.mytest_ri), 5);
-        assert.notEqual( utils.mylib_not(5, 4,6, utils.mytest_ri), 5);
-        assert.notEqual( utils.mylib_not(5, 4,6, utils.mytest_ri), 5);
-        assert.notEqual( utils.mylib_not(5, 4,6, utils.mytest_ri), 5);
-        assert.notEqual( utils.mylib_not(5, 4,6, utils.mytest_ri), 5);
-        assert.notEqual( utils.mylib_not(5, 4,6, utils.mytest_ri), 5);
-        assert.notEqual( utils.mylib_not(5, 4,6, utils.mytest_ri), 5);
-        assert.notEqual( utils.mylib_not(5, 4,6, utils.mytest_ri), 5);
-        assert.notEqual( utils.mylib_not(5, 4,6, utils.mytest_ri), 5);
-        assert.notEqual( utils.mylib_not(5, 4,6, utils.mytest_ri), 5);
-        assert.notEqual( utils.mylib_not(5, 4,6, utils.mytest_ri), 5);       ;
+        assert.notEqual( utils.mylib_not([5], utils.mytest_ri, 250, 4,6 ), 5);
+        assert.notEqual( utils.mylib_not([5], utils.mytest_ri, 250, 4,6 ), 5);
+        assert.notEqual( utils.mylib_not([5], utils.mytest_ri, 250, 4,6 ), 5);
+        assert.notEqual( utils.mylib_not([0], utils.mytest_ri, 250,-1,1 ), 0);
+        assert.notEqual( utils.mylib_not([5], utils.mytest_ri, 250, 4,6 ), 5);
+        assert.notEqual( utils.mylib_not([5], utils.mytest_ri, 250, 4,6 ), 5);
+        assert.notEqual( utils.mylib_not([5], utils.mytest_ri, 250, 4,6 ), 5);
+        assert.notEqual( utils.mylib_not([5], utils.mytest_ri, 250, 4,6 ), 5);
+        assert.notEqual( utils.mylib_not([5], utils.mytest_ri, 250, 4,6 ), 5);
+        assert.notEqual( utils.mylib_not([5], utils.mytest_ri, 250, 4,6 ), 5);
+        assert.notEqual( utils.mylib_not([5], utils.mytest_ri, 250, 4,6 ), 5);
+        assert.notEqual( utils.mylib_not([5], utils.mytest_ri, 250, 4,6 ), 5);
+        assert.notEqual( utils.mylib_not([5], utils.mytest_ri, 250, 4,6 ), 5);
+        assert.notEqual( utils.mylib_not([5], utils.mytest_ri, 250, 4,6 ), 5);
+        assert.notEqual( utils.mylib_not([5], utils.mytest_ri, 250, 4,6 ), 5);
+        assert.notEqual( utils.mylib_not([5], utils.mytest_ri, 250, 4,6 ), 5);
+        assert.notEqual( utils.mylib_not([5], utils.mytest_ri, 250, 4,6 ), 5);       ;
     });
     it("significant figures test", function(){
         assert.equal( utils.mylib_significant_figures(     0.0,     1), 0);
