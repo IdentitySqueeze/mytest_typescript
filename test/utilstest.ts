@@ -51,10 +51,18 @@ describe("utils test", function(){
         }
         return true;
     }
-    function not_bookend_biased(x:number, y:number, func){
+
+    // Unit test a 'passing' function isn't just returning the same val(s) over & over
+    function not_fixated(not_us:number[], func:Function, ...args){
+        return run_func_until_not(not_us, func, 250, [...args]);
+    }
+
+    // Unit test a 'passing' [from, to] function does return something other than [from] or [to]
+    function not_bookend_biased(func:Function, ...args ){
+        let [x,y, ...others]=args;
         if( x-y==1 || y-x==1 )
             return true;
-        return run_func_until_not([x,y], func, 250, [x,y]);
+        return run_func_until_not([x,y], func, 250, [...args]);
     }
 
     it("ri test", function(){
@@ -63,8 +71,8 @@ describe("utils test", function(){
             assert.isAtLeast(num,bott);
             assert.isAtMost(num,top);
         }
-        assert.isTrue(not_bookend_biased(1,1,  utils.mytest_ri));
-        assert.isTrue(not_bookend_biased(5,10, utils.mytest_ri));
+        assert.isTrue(not_bookend_biased(utils.mytest_ri, [1,1]  ));
+        assert.isTrue(not_bookend_biased(utils.mytest_ri, [5,10] ));
         assert.equal( utils.mytest_ri(2,2),2);
         assert.equal( utils.mytest_ri( 1, 1), 1);
         test_ri( -1,  1, -1,  1 );
@@ -143,6 +151,8 @@ describe("utils test", function(){
             //     assert.equal(rslt_split.slice(-1)[0].length, z)
             // }
         }
+        assert.isTrue(not_bookend_biased(utils.mytest_rd, [1,1,1] ));
+        assert.isTrue(not_bookend_biased(utils.mytest_rd, [5,10,3]));
         assert.equal( utils.mytest_rd( 1, 1, 0), 1);
         test_rd(-1, 1, 0);
         test_rd( 1,-1, 0);
@@ -348,7 +358,14 @@ describe("utils test", function(){
         test_rfr( 7, 5 );
         test_rfr( 8, 5 );
         test_rfr( 9, 5 );
-
+        let [num, denom] = utils.mytest_rfr( 2, 3 ).entries();
+        assert.isTrue(not_fixated([num, denom], utils.mytest_rfr, [2, 3]));
+        [num, denom] = utils.mytest_rfr( 1, 2 );
+        assert.isTrue(not_fixated([num, denom], utils.mytest_rfr( 1, 2 )));
+        [num, denom] = utils.mytest_rfr( 2, 2 );
+        assert.isTrue(not_fixated([num, denom], utils.mytest_rfr( 2, 2 )));
+        [num, denom] = utils.mytest_rfr( 3, 4 );
+        assert.isTrue(not_fixated([num, denom], utils.mytest_rfr( 3, 4 )));
     });
     it("is prime test", function(){
         assert.isFalse(utils.mytest_isPrime(-1));
@@ -525,7 +542,12 @@ describe("utils test", function(){
         assert.oneOf( utils.mylib_sq( 1, 3 ), [1,4,9]);
         assert.oneOf( utils.mylib_sq( 2, 5 ), [4,9,16,25]);
         assert.oneOf( utils.mylib_sq( 5, 10), [25,36,49,64,81,100]);
-
+        assert.isTrue( not_fixated([25], utils.mylib_sq, [5, 10]));
+        assert.isTrue( not_fixated([36], utils.mylib_sq, [5, 10]));
+        assert.isTrue( not_fixated([49], utils.mylib_sq, [5, 10]));
+        assert.isTrue( not_fixated([64], utils.mylib_sq, [5, 10]));
+        assert.isTrue( not_fixated([81], utils.mylib_sq, [5, 10]));
+        assert.isTrue( not_fixated([100], utils.mylib_sq, [5, 10]));
     });
     it("not sq test", function(){
         assert.isFalse( utils.mylib_isSquare( utils.mylib_notSquare( 0,   1 ) ) );
