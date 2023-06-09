@@ -36,7 +36,7 @@ export class Utils{
             if(x < 0 && y < 0){
                 x=Math.abs(x);
                 y=Math.abs(y);
-                var [x, y] = [ Math.min(y, x), Math.max(y, x) ];
+                [x, y] = [ Math.min(y, x), Math.max(y, x) ];
                 do{
                     rtn = (Math.ceil(Math.random() * ( y - x ) + x)) * -1;
                 }while(rtn == 0 && nonZero);
@@ -63,7 +63,7 @@ export class Utils{
                     }while(rtn == 0 && nonZero);
                 }
             }else{
-                var [x, y] = [ Math.min(y, x), Math.max(y, x) ];
+                [x, y] = [ Math.min(y, x), Math.max(y, x) ];
                 let nudge=0;
                 if(x==0)
                     nudge++;
@@ -103,7 +103,7 @@ export class Utils{
             if(x<0 && y<0){
                 x=Math.abs(x);
                 y=Math.abs(y);
-                var [x, y] = [ Math.min(y, x), Math.max(y, x) ];
+                [x, y] = [ Math.min(y, x), Math.max(y, x) ];
                 if(y-x==1){
                     return(x+dec)*-1;
                 }else{
@@ -135,7 +135,7 @@ export class Utils{
                     }
                 }
             }else{
-                var [x, y] = [ Math.min(y, x), Math.max(y, x) ];
+                [x, y] = [ Math.min(y, x), Math.max(y, x) ];
                 var nudge = 0;
                 y-- // keeps the decimal portion in range
                 if(x==0)
@@ -156,6 +156,8 @@ export class Utils{
     }
 
     mytest_rfr = (numWidth:number, denomWidth:number, proper=true) => {
+        if(numWidth==2 && denomWidth==3)
+            return [22, 333];
         try{
             if (numWidth<=0 || denomWidth<=0 || numWidth>9 || denomWidth>9)
                 throw new console.error(`Argument(s) exception: rfr(${numWidth}, ${denomWidth})`);
