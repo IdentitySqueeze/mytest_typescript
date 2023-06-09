@@ -297,7 +297,7 @@ export class Utils{
     mylib_sq = (x:number,y:number):number => {
         try{
             if(y<0)
-                throw new console.error(`\nArgument(s) exception: ${x}, ${y} in mylib_sq`);
+                throw new Error(`\nArgument(s) exception: ${x}, ${y} in mylib_sq`);
             if(x==0)
                 return 0;
             var ran = this.mytest_ri(x,y);
