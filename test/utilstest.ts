@@ -639,11 +639,11 @@ describe("utils test", function(){
         assert.oneOf( utils.mylib_choose( [  2,    4,    8,   16,   32, 64, 128, 256, 512, 1024, 2048, 8192, 16384, 32768, 65536 ] ),
                                            [2,    4,    8,   16,   32, 64, 128, 256, 512, 1024, 2048, 8192, 16384, 32768, 65536 ] );
         let rslt = utils.mylib_choose([10,20,30,40,50,60,70,80,90,100]);
-        assert.isTrue(not_fixated([rslt], utils.mylib_choose,10,20,30,40,50,60,70,80,90,100 ));
+        assert.isTrue(not_fixated([rslt,rslt], utils.mylib_choose,[10,20,30,40,50,60,70,80,90,100] ));
         rslt = utils.mylib_choose([1,2,3,4,5,6,7,8,9,10]);
-        assert.isTrue(not_fixated([rslt], utils.mylib_choose,1,2,3,4,5,6,7,8,9,10 ));
+        assert.isTrue(not_fixated([rslt,rslt], utils.mylib_choose,[1,2,3,4,5,6,7,8,9,10] ));
         rslt = utils.mylib_choose([-5,-4,-3,-2,-1,0,1,2,3,4,5]);
-        assert.isTrue(not_fixated([rslt], utils.mylib_choose,-5,-4,-3,-2,-1,0,1,2,3,4,5));
+        assert.isTrue(not_fixated([rslt,rslt], utils.mylib_choose,[-5,-4,-3,-2,-1,0,1,2,3,4,5]));
     });
     it("int not test", function(){
         assert.notEqual( utils.mylib_not([5], utils.mytest_ri, 250, 4,6 ), 5);
